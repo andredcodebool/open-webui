@@ -44,7 +44,8 @@ app = FastAPI(
 )
 
 # CORS configuration
-origins = os.environ.get("CORS_ALLOW_ORIGIN", "*").split(",")
+# Default to localhost only for personal use instead of wildcard
+origins = os.environ.get("CORS_ALLOW_ORIGIN", "http://localhost:3000,http://localhost:8080").split(",")
 
 app.add_middleware(
     CORSMiddleware,
