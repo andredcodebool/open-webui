@@ -90,6 +90,9 @@ if __name__ == "__main__":
     host = os.environ.get("HOST", "127.0.0.1")  # Personal use: bind to localhost by default instead of 0.0.0.0
     port = int(os.environ.get("PORT", 8080))
 
+    # Use DEBUG log level in dev mode so it's easier to trace issues locally
+    log_level = "debug" if os.environ.get("ENV", "prod") == "dev" else "info"
+
     log.info(f"Starting server on {host}:{port}")
     uvicorn.run(
         "main:app",
@@ -97,4 +100,5 @@ if __name__ == "__main__":
         port=port,
         reload=os.environ.get("ENV", "prod") == "dev",
         forwarded_allow_ips="*",
+        log_level=log_level,
     )
