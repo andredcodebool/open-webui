@@ -87,7 +87,7 @@ else:
 if __name__ == "__main__":
     import uvicorn
 
-    host = os.environ.get("HOST", "0.0.0.0")
+    host = os.environ.get("HOST", "127.0.0.1")  # Personal use: bind to localhost by default instead of 0.0.0.0
     port = int(os.environ.get("PORT", 8080))
 
     log.info(f"Starting server on {host}:{port}")
